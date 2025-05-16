@@ -17,7 +17,7 @@ Target Users:
 
 Solution:
 - Web2-style onboarding (Student ID + school dropdown)
-- Instant Stellar wallet passkey creation (fake for UX simulation)
+- Instant Stellar wallet passkey creation (Generated for UX simulation)
 - One-click CADT payments on Stellar Testnet
 - On-chain transactions viewable on Stellar Expert
 - Web receipt downloads, balance tracking, and real-time status updates
@@ -35,7 +35,7 @@ Why Stellar:
 | Feature | Description |
 |--------|-------------|
 | Web2 Login | Login via student ID + university selection |
-| Fake Passkey | Automatically generated 56-char wallet passkey |
+| Generated Passkey | Automatically generated 56-char wallet passkey |
 | CADT Payments | Send stablecoin from Issuer to Distributor |
 | Balance Tracker | Track tuition paid + amount remaining |
 | Receipt Download | Download on-chain receipt (HTML version) |
@@ -83,7 +83,7 @@ Why Stellar:
 📜 How It Works (UX Simulation)
 
 1. User logs in with Student ID + school
-2. Fake Stellar passkey is generated and saved in session
+2. Generated Stellar passkey is generated and saved in session
 3. Portal displays balance and allows CADT payment
 4. Transaction submitted on Stellar Testnet (via SDK)
 5. Result links to Stellar Expert + downloadable receipt
