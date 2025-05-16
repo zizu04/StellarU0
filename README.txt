@@ -3,6 +3,7 @@ Built for the Stellar Consensus Hackathon 2025 – “Web3 UX doesn’t have to 
 
 The StellarU CADT Tuition Portal demonstrates how Web3 apps can offer a seamless, intuitive, Web2-style experience while leveraging Stellar's smart contracts, passkeys, and decentralized asset transfers. Designed for international students, this app allows tuition payments using CADT (CAD stablecoin) via a frictionless login and payment process.
 
+Working Prototype: https://zizu04.github.io/StellarU0/login.html
 ---
 
 The Narrative “Why”
