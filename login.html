@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login | StellarU Tuition Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    .container {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+      max-width: 700px;
+      width: 90%;
+      text-align: center;
+      word-wrap: break-word;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 15px 0 5px;
+      text-align: left;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #2c2c2c;
+      color: #fff;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #03dac6;
+      color: #000;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .error {
+      color: #ff6b6b;
+      margin-top: 10px;
+    }
+    .status {
+      margin-top: 15px;
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Login to StellarU</h1>
+
+    <label for="studentId">Student ID:</label>
+    <input type="text" id="studentId" placeholder="e.g. A101" />
+
+    <label for="school">Select Your School:</label>
+    <select id="school">
+      <option value="">-- Select --</option>
+      <option value="WLU">Wilfrid Laurier University</option>
+      <option value="UW">University of Waterloo</option>
+      <option value="MAC">McMaster University</option>
+      <option value="UWO">Western University</option>
+      <option value="UofT">University of Toronto</option>
+      <option value="CAM">University of Cambridge</option>
+    </select>
+
+    <button onclick="login()" id="loginBtn">Log In</button>
+    <p id="errorMessage" class="error"></p>
+    <p id="statusMessage" class="status"></p>
+  </div>
+
+  <script>
+    const studentSchoolMap = {
+      A101: "WLU",
+      B202: "UW",
+      C303: "MAC",
+      D404: "UWO",
+      E505: "UofT",
+      F606: "CAM"
+    };
+
+    function generatePasskey() {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+      let result = 'C';
+      for (let i = 1; i < 56; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    function login() {
+      const id = document.getElementById("studentId").value.trim().toUpperCase();
+      const school = document.getElementById("school").value;
+      const errorMsg = document.getElementById("errorMessage");
+      const statusMsg = document.getElementById("statusMessage");
+      const loginBtn = document.getElementById("loginBtn");
+
+      errorMsg.textContent = '';
+      statusMsg.textContent = '';
+
+      if (!id || !school) {
+        errorMsg.textContent = "Please enter your Student ID and select your school.";
+        return;
+      }
+
+      if (studentSchoolMap[id] !== school) {
+        errorMsg.textContent = "❌ Invalid combination of Student ID and School.";
+        return;
+      }
+
+      loginBtn.disabled = true;
+
+      // Verification Phase
+      statusMsg.textContent = "✅ CREDENTIALS VERIFIED";
+      setTimeout(() => {
+        const Passkey = generatePasskey();
+
+        // Show Passkey
+        statusMsg.innerHTML = `🔐 Stellar Passkey Created:<br><span style="font-family: monospace; color: #80d8ff">${Passkey}</span>`;
+
+        // Save session
+        localStorage.setItem("studentId", id);
+        localStorage.setItem("school", school);
+        localStorage.setItem("Passkey", Passkey);
+
+        // Redirect
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 2000);
+      }, 4000);
+    }
+  </script>
+</body>
+<footer>© Built on Stellar for the Consensus Hackathon 2025</footer>
+</html>
